@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+        <li class="li li1">1</li>
+        <li id="li2">2</li>
+        <li class="li">3</li>
+    </ul>
+<script>
+
+    /*
+        substring
+        substr
+        slice
+        charAt
+        indexOf
+        lasetIndexOf
+        split  join
+
+        pop
+        push
+        shift
+        unshift
+        forEach
+        every
+        map
+        concat
+        sort
+        slice
+        splice
+        from
+        some
+
+    */
+
+    var ul = document.getElementById('ul');
+
+    //var lis = ul.getElementsByClassName('li');
+
+    // $('li')
+
+    var arr = [];
+    console.dir(Array);
+
+    function $(name) {//封装一个函数，传入函数的名字，如#ID，.class tagname
+        var o = name.charAt();//拿到名字的第一个字符如# 或.
+        var arr = [];//声明一个空数组，用来存放获取出来的元素集合
+        //console.log(aEle)
+        if(o === '#'){//当传入的名字第一个字符为#，说明为ID
+            return document.getElementById(name.substring(1));//则返回通过ID获取到的元素，是唯一的
+        }else if(o === '.'){//当传入的名字第一个字符为.，说明为className
+            var aEle = document.getElementsByTagName('*');//获取页面上所有的元素，是一个集合
+            var d = name.substring(1);//拿到传入的名字的除第一个字符之后的‘真名字’
+            for(var i=0;i<aEle.length;i++){//对拿到的页面的所有的元素集合进行循环
+                var sClass = aEle[i].className.split(' ');//当某个元素不止有一个className的时候，用空格隔开并生成数组
+                for(var j=0;j<sClass.length;j++){//对数组进行遍历
+                    if(sClass[j] === d){//当传入的真名字和数组中有相同的时候，把数组中的这个数据添加到开始声明的空数组中
+                        arr.push(aEle[i]);
+                    }
+                }
+            }
+            return arr;//所有循环完成后，返回这个数组，即所有拥有这个className的元素集合
+        }else{
+            return document.getElementsByTagName(name);//传入的名字既不是id也不是classname,那么就执行最后这个，通过标签名获取元素
+        }
+        // console.log(o);
+    }
+
+    //$('#li2').style.background = 'red';
+
+    for(var i=0;i<$('.li').length;i++){
+        $('.li')[i].style.background = 'red';
+    }
+    
+    console.log($('li'));
+
+    // console.log(lis.length);
+
+</script>
+</body>
+</html>
