@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        找出下列字符串中数量最多的是谁？有多少个？
+    */
+    var str = '0d302sa00ud04yy553y210a0udyt27036320190e03029y27';
+    var min = -Infinity;
+    var index = '';
+    str = str.split('').sort().join('');//先把字符串转成数组，然后用数组的方法排序，再把排序好的数组转成字符串
+
+    str.replace(/(\w)\1+/g,function($0,$1){//(\w)子项：数字字母下划线  \1重复的子项    +最少一个最多无限  $0拿到的是符合条件的字符串  $1是子项
+       // console.log($1)
+       if(min < $0.length){//当$0的长度大于min即某个数字重复的个数小于min时
+         min = $0.length; //min=某个数字重复的个数 
+         index = $1;//index为这个子项
+       }
+    });
+
+    console.log('最多的是'+index+'，出现了'+min+'次');
+    // console.log(str);
+
+
+ /*************************************************************/   
+    
+    
+    // var json = {};
+    // for(var i=0;i<str.length;i++){ 对整个字符串进行遍历
+    //     if(!json[str[i]]){ 第一次进来的时候不存在所以执行if内容，给json的键赋值1
+    //         json[str[i]] = 1;
+    //     }else{
+    //         json[str[i]] ++;当这个键已经存在的时候就进行++，这个循环最终拿到的是每个字符出现了多少次
+    //     }
+    // }
+
+    // var min = -Infinity;
+    // var index = '';
+
+    // for(var attr in json){ 对json进行遍历
+    //     if(json[attr] > min){ 当json的键值大于min时，就把这个键值赋给min，即把这个字符出现的次数赋给min
+    //         min = json[attr];
+    //         index = attr; index为此时的键
+    //     }
+    // }
+
+    // console.log('最多的是'+index+'，出现了'+min+'次');
+
+</script>
+</body>
+</html>

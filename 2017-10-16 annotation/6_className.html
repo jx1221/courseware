@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li class="li1     li">2</li>
+        <li>3</li>
+        <li class="li1 li2">4</li>
+        <li>5</li>
+    </ul>
+<script>
+   console.log(getByClass('.li1').length);
+   var s = '123';
+    //  /s/
+    //new RegExp('' + s + '')
+    /*
+        /(^|\s)li(\s|$)/;
+
+        \\n
+
+        重点：
+            1.找规律
+            2.使用new RegExp()
+                如果使用标准正则写法，那么第一个里面可以为字符串，
+                这个时候就可以使用变量，如果规则中使用转义符，记得
+                要转义。如 \\s   /|\都需要转换。
+            var s = '123';
+            /s/ -> 's'
+            new RegExp(s,'g') -> '123'
+
+    */
+
+   function getByClass(sClass){
+        var s = sClass.charAt();//拿到第一个字符，还可以写sClass[0]这种写法低版本不兼容
+        if(s === '#'){
+            // 当第一个字符为井号时，即为id
+            return document.getElementById(sClass.substring(1));//sClass.substring(1)拿到的是除第一个字符外字符串，“真名字”
+        }else if(s === '.'){
+            if(document.getElementsByClassName){//如果浏览器支持通过className获取
+                return document.getElementsByClassName(sClass.substring(1));
+            }else{//如果不支持
+                var arr = [];
+                var aEle = document.getElementsByTagName('*');//拿到页面上所有的元素
+                var re = new RegExp('(^|\\s)' + sClass.substring(1) + '(\\s|$)','g');//用new的方法是因为可以引用变量，而简写的方法不行
+                //第一个加号前的内容表示为开头或是空格
+                //第二个加号后的内容表示为是空格或是结尾
+                // re就是符合条件的classname
+                for(var i=0;i<aEle.length;i++){
+                    if(re.test(aEle[i].className)){//如果元素的classname符合条件那么就把元素push到数组内
+                        arr.push(aEle[i]);
+                    }
+                }
+                return arr;//返回整个数组
+            }
+        } 
+   }
+
+   // 'li  li2'  ^ + li + 空格   
+   //'li2   li'  空格 + li +结尾
+   //'li2  li li3' \空格 + li + 空格
+   console.log(/(^|\s)li(\s|$)/.test('li2  li li3')); 
+</script>
+</body>
+</html>
