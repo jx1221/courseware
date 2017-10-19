@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    //forEach 的原理
+    var arr = [1,2,3,4,5];
+
+    Array.prototype.forEachT = function(callback,that){
+        for(var i=0;i<this.length;i++){
+            callback.call(that,this[i],i,this);
+            //这里的this是指arr，因为是arr调用的这个方法，this[i]是arr中的每一项，i是下标，this就是整个数组
+        }
+    }
+
+    arr.forEachT(function(e,i,all){
+        console.log(this);
+    },document);
+
+    // callback：function(e,i,all){
+    //     console.log(this);
+    // }
+    // that：document
+
+    // function(e,i,all){
+    //     console.log(this);
+    // }.call
+   
+
+</script>
+</body>
+</html>

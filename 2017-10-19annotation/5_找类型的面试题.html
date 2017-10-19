@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+<script>
+    //判断下面的数据类型为数组。
+    /*
+        !!arr.push
+    */
+    // var arr = '123'//[1,2,3,4];
+    // //Array.prototype.toString //我的车（没有车灯）
+    // var s = Object.prototype.toString;//他的车（有车灯）
+
+    /*
+        fn = function(){alert('1')};
+        fn.call()  1
+
+        Object.prototype.toString = function(){ [object Object] }
+
+        Object.call(arr)  [object Object]
+
+        [object Array]
+
+    */
+
+
+    //console.log(Object.prototype.toString.call(arr) === '[object Array]');
+
+    // console.log(!!arr.push);
+
+    // var arr = [3,4,5,6];
+    // var arr2 = arr.slice();
+    // console.log(arr,arr2);//[3,4,5,6]    [3,4,5,6]
+   
+
+
+
+    // var lis = document.getElementsByTagName('li');//这是一个类数组，不是真的数组
+    // lis = Array.prototype.slice.call(lis);//把类数组转成真数组
+    // slice() 方法返回一个从开始到结束（不包括结束）选择的数组的一部分浅拷贝到一个新数组对象。原始数组不会被修改。如果括号内什么都不填写，那么得到的就是原数组的内容
+
+    // 所以这个Array.prototype.slice是个函数，函数下都有call apply bind方法，用call的方法把类数组传进去，用Array.prototype.slice这个函数把类数组转成真数组
+
+    // lis.forEach((e,i)=>{//e是代表每个元素，i是每个元素的下标
+    //     e.onclick = function(){
+    //         alert(i);
+    //     }
+    // });
+
+    var arr2 = [2,2,3,4];
+
+    console.log(arr2.slice(1))//括号内只填写一个数字那么就代表从下标的第一个截取到最后一个，所以拿到的是234，是把内容取出来
+
+    console.log(arr2)
+
+
+</script>
+</body>
+</html>

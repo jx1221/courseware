@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+       修改this指向的方法  
+        call:
+            会直接调用
+            函数身上的一个方法，有若干的参数
+
+            第一个参数：
+                改变this指向
+
+            第二个往后的参数：
+                就是要传的实参；
+
+        apply:
+            会直接调用
+            只有2个参数
+
+            第一个参数：
+                改变this指向
+
+            第二个参数:
+                数组（数组内是实参）
+
+        bind:
+            修正this指向但是不直接调用，它会返回一个新的函数
+            当调用新函数的时候会调出修改之后的this
+
+            若干个参数:
+                第一个参数：
+                    改变this指向
+                第二个往后的参数：
+                    就是要传的实参
+
+    */
+    function fn(a,b,c,d,e){
+        alert(a+b);
+        console.log(this);
+    }
+
+    var f = fn.bind(document,2,3,4,5,6);//因为调用bind会产生一个新的函数，所以要用一个变量进行接收，执行变量后，this的指向就改为第一个参数传进去的内容
+    console.log(fn.bind(document))
+
+    f();
+    // console.log(f);
+
+   
+
+    // fn.call(document,2,2,3,4,5);
+
+
+    // fn.apply(document,[2,2,3,4,5]);
+
+    // console.dir(fn)
+</script>
+</body>
+</html>

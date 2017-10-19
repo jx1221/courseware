@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        深度克隆 -> deepClone
+
+        因为一次遍历中如果对象里面的内容为简单类型，那么直接赋值即可（克隆成功）
+        但是，如果在这个对象中还有对象类型，那么这个时候赋值即赋址。
+        那这个时候碰到了对象类型就再遍历，遍历到全是简单类型为止,保证
+        所有的赋值都是简单类型的赋值了，就达到了深度克隆的目的。
+    
+        document.addEvent('就写上滚',fn);
+    */
+    // var arr = [1,2,3,4,[6,{name:'dq'},function fn2(){}]];
+    var arr = [function fn2(){}] 
+
+    console.log(Object.prototype.toString.call(arr));
+    console.log(typeof arr[0]);
+
+    
+
+    // function deepClone(obj){
+    //     var o = [];
+    //     for(var i=0;i<obj.length;i++){
+    //         if(typeof obj[i] == 'object'){
+    //             o[i] = deepClone(obj[i]);
+    //         }else{
+    //             o[i] = obj[i];
+    //         }
+    //     }
+    //     return o;
+    // }
+
+    function deepClone(obj){
+        var toS = Object.prototype.toString;//把对象转成字符串
+        var o = toS.call(obj) === '[object Object]'?{}:[];
+        //用call方法调用这个函数，把要转成字符串的对象传进去，如果是对象对象o就是{}，如果不是对象o就是[];
+        for(var attr in obj){//遍历这个对象，如果obj只是数组，那么obj的key则为下标，value为这个项，如果是对象则有对应的key值和value值
+            if(typeof obj[attr] == 'object'){//value是对象，那么就说明obj的这一项为对象
+                o[attr] = deepClone(obj[attr]);//那么就在此处再调用一次这个函数,传这个是对象的这一项进去
+            }else{
+                o[attr] = obj[attr];//如果数组中的这一项是函数的话，那么就直接走else了因为他是function而不是object
+            }
+        }
+        return o;
+    }
+// var arr2 = deepClone(arr);
+    var arr2 = JSON.parse(JSON.stringify(arr));//deepClone(arr);？？？？？？？？？？
+
+    arr2[4].push(5);
+
+    console.log(arr2);
+
+
+
+
+    // var arr2 = [];
+
+    // for(var i=0;i<arr.length;i++){
+    //     arr2[i] = arr[i];
+    // }
+    
+
+function DeepClone(){
+
+}
+
+</script>
+</body>
+</html>
