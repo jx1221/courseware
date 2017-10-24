@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			height: 200px;
+		}
+
+	</style>
+</head>
+<body>
+	姓名：<input type="text" name="" id="username">
+	<!-- 密码：<input type="text" name=""> -->
+	<input type="button" name="" value="search" id="search">
+	<ul class="ul">
+		
+	</ul>
+	<script type="text/javascript" src="ajax(4.1).js"></script>
+	<script type="text/javascript">
+		let search = document.getElementById('search');
+		let username = document.getElementById('username');
+		let ul = document.querySelector('ul');
+		search.onclick = function(){
+			ajax({
+				url: 'ajax.php',
+				data:{
+					user: username.value
+					// console.log(data)
+				},
+
+				success:function(data){
+					console.log(data)
+					if (data.code==0) {//这里的判断条件是根据url里的文件判断条件是什么，根据data来的
+						let li = document.createElement('li');
+						// ul.innerHTML = '<li>'+'名字:'+data.data.name+'，年龄：'+data.data.age+'岁，爱好：'+data.data.hobby+'，简介：'+data.data.info;+'</li>';
+						ul.innerHTML = '';
+
+						li.innerHTML = '名字:'+data.data.name+'，年龄：'+data.data.age+'岁，爱好：'+data.data.hobby+'，简介：'+data.data.info;
+						console.log(ul)
+						ul.appendChild(li);
+					}else if(data.code==1){
+						alert(data.data);
+					}
+				}
+			})
+			
+		};
+	</script>
+</body>
+</html>
