@@ -1,0 +1,113 @@
+1. 把项目运行起来
+
+2. 把 以下 的问题理顺
+
+
+关于 .babelrc 这个配置文件
+    干什么的, 
+    // 这是个配置文件，在里面进行配置，引入预设和插件，让loader按照这些插件进行
+   
+    
+    什么时候会被使用 
+    //babelloader的默认配置没办法成功对我们自己写的代码进行识别
+    
+
+    如何配置 预设和插件//在根目录下建一个这个文件，这个文件内容是一个对象
+    {
+        "presets":["react","env"],
+        "plugins":["transform-object-..."]//插件的名字
+    }
+
+关于 babel
+    干什么的
+    //把能转成es5的代码转成es5的代码
+
+
+    如何在 cli 使用？？？？？？？？？？？？？？？？？？？？
+
+
+    如何在 webpack 使用
+    //安装依赖后，新建webpack.config.js文件，在这个文件下面进行配置出口入口
+
+    const path = require('path');
+    module.exports = {
+        entry: './js的文件名'，
+        output:{
+            path:path.resolve(__dirname,'dist在这个文件夹下建立一个要在html里要引入的文件')，这样会得到一个绝对路径
+            filename:'bba.js'要引入的文件名，这个文件会由webpack自己创建
+
+        }
+    }
+
+
+    基于什么运行的 (插件)
+
+
+
+    预设是什么 (插件的集合)
+
+关于 webpack 的
+    干什么的
+    //把代码进行打包，可以实现模块化？？？？？？？
+    
+    入口是什么意思, 如何配置
+    //在webpack.config.js下entry：写明入口的文件名如./app.js 字符串形式的
+
+
+    输出是什么意思, 如何配置(文件名, 输出路径)
+    //output：{
+        path：
+        filename：
+    }
+    什么是 loader,
+    //对模块进行预处理
+
+
+    在什么情况下会让 loader 起作用？？？？？？？？？？
+    如何在 webpack 使用 babel-loader？？？？？？？？？
+
+关于 npm 的
+    干什么用的
+
+    安装软件用的？？？？？？
+
+
+
+    关于package.json的文件
+        如何生成
+        npm init -y
+
+
+        什么情况下会被使用
+        命令行的命令想要自己设定的时候
+
+
+
+        *如何在里面声明命令
+        在<script>标签中，"自定义命令名"："原命令名"
+            
+            在里面声明命令的好处
+            方便自己使用，可以在项目内使用？？？？？
+
+
+    如何安装依赖 (声明为生产还是开发)
+    npm i -D package 生产
+    npm i -S package 开发
+
+关于模块化语法？？？？？
+    es6
+        import 'f.js'                                    引入一个文件
+        import a from './ds.js'                          引入一个变量从这个
+        import a,{b,c} from './ds.js'                    引入一个变量和一个对象
+        import a,{b as ccd,c} from './ds.js'             引入一个变量和一个对象 b的名字修改为ccd
+
+        export   标准导出
+        export default 默认导出，这种导出方式名字可以修改
+
+    commonJS
+        require('./a.js') 引入模块查找这个文件
+        module.exports
+        exports
+
+        require 用来加载代码，而 exports 和 module.exports 则用来导出代码。
+        CommonJS是一种规范，NodeJS是这种规范的实现。CommonJS是一 个不断发展的规范
