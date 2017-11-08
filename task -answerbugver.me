@@ -5,11 +5,13 @@
 
 关于 .babelrc 这个配置文件
     干什么的, 
-    // 这是个配置文件，在里面进行配置，引入预设和插件，让loader按照这些插件进行
-   
+    // 这是个配置文件，在里面进行配置，引入预设和插件，让loader按照这些插件进行（这句是自己写的）
+   babel API的配置选项，就是告诉babel，怎么运行
     
+   
+
     什么时候会被使用 
-    //babelloader的默认配置没办法成功对我们自己写的代码进行识别
+    使用babel编译文件的时候，就会去查看.babelrc，根据babelrc的配置来做相应的操作
     
 
     如何配置 预设和插件//在根目录下建一个这个文件，这个文件内容是一个对象
@@ -24,6 +26,11 @@
 
 
     如何在 cli 使用？？？？？？？？？？？？？？？？？？？？
+    安装 babel-cli
+    Babel 官方推荐将 Babel 安装在本地，因为 Babel 的不同版本以及不同转码规则会起到不同的效果，全局安装会带来不必要的麻烦。我们执行如下命令将其安装到项目中。
+    npm install --save-dev babel-cli
+    安装需要的插件
+    配置文件.babelrc
 
 
     如何在 webpack 使用
@@ -59,17 +66,22 @@
         path：
         filename：
     }
+    webpack的打包结果
     什么是 loader,
-    //对模块进行预处理
+    处理模块内容
+    //加载模块的时候，使用有些loader预处理，对模块进行预处理
 
 
-    在什么情况下会让 loader 起作用？？？？？？？？？？
-    如何在 webpack 使用 babel-loader？？？？？？？？？
+    在什么情况下会让 loader 起作用
+    当被某一个rule匹配到之后
+    如何在 webpack 使用 babel-loader
+    看配置
 
 关于 npm 的
     干什么用的
 
-    安装软件用的？？？？？？
+    安装软件用的？？？？？？包管理工具
+    管理项目的依赖
 
 
 
@@ -80,6 +92,11 @@
 
         什么情况下会被使用
         命令行的命令想要自己设定的时候
+        npm i 安装项目依赖的时候
+        查看里面声明了什么命令
+        查看项目依赖的时候
+        看看项目是什么样子的时候
+        拿到项目的第一件事情就是要去看这个文件，看依赖和命令
 
 
 
@@ -87,27 +104,48 @@
         在<script>标签中，"自定义命令名"："原命令名"
             
             在里面声明命令的好处
+            很方便的描述出和本项目相关的一些命令操作
             方便自己使用，可以在项目内使用？？？？？
 
 
     如何安装依赖 (声明为生产还是开发)
-    npm i -D package 生产
-    npm i -S package 开发
+    npm i -D package 开发
+    npm i -S package 生产
 
 关于模块化语法？？？？？
     es6
-        import 'f.js'                                    引入一个文件
-        import a from './ds.js'                          引入一个变量从这个
-        import a,{b,c} from './ds.js'                    引入一个变量和一个对象
-        import a,{b as ccd,c} from './ds.js'             引入一个变量和一个对象 b的名字修改为ccd
+        import 'f.js'
+        让这个模块运行，但不需要接收它暴露的接口                                    
+       
+
+        import a from './ds.js'                          
+        引入模块的默认导出让a的变量接收ds.js的默认导出
+
+        import a,{b,c} from './ds.js'                    
+       让a的变量接收ds.js的默认导出，接收它的标准导出b,c
+
+        import a,{b as ccd,c} from './ds.js' 
+         让a的变量接收ds.js的默认导出，接收它的标准导出b,c并且把b重命名成ccd
+
 
         export   标准导出
-        export default 默认导出，这种导出方式名字可以修改
+        export default 默认导出，这种导出方式名字可以修改，默认导出可以不用取名字
 
     commonJS
         require('./a.js') 引入模块查找这个文件
         module.exports
+        模块接收的是module.exports的导出
         exports
+        //
+        exports 初始默认指向module.exports，如果这个指向被重新赋值，就会断掉和module.exports的联
+        不能直接给exports赋值
 
         require 用来加载代码，而 exports 和 module.exports 则用来导出代码。
         CommonJS是一种规范，NodeJS是这种规范的实现。CommonJS是一 个不断发展的规范
+
+
+
+直接敲webpack命令，会在全局里找webpack，但我们只在项目里安装了，全局里没有装，所以找不到
+
+webpack -p 上线的时候运行这条命令，生产打包
+webpack 开发打包用这个
