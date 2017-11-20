@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list">
+        <li v-for="value,i in arr ">
+            <!--这个i不用就不用写了-->
+            <div>姓名：{{value.name}}</div>
+            <div>性别：{{value.sex}}</div>
+            <div>年龄：{{value.age}}</div>
+        </li>
+        <!--<li>-->
+            <!--<div>姓名：leo</div>-->
+            <!--<div>性别：男</div>-->
+            <!--<div>年龄：30</div>-->
+        <!--</li>-->
+    </ul>
+<script src="vue.js"></script>
+<script>
+    let arr = [
+        {
+            name:'leo',
+            age:30,
+            sex:'男'
+        },
+        {
+            name:'momo',
+            age:32,
+            sex:'男'
+        }
+    ]
+
+    let vm = new Vue({
+        el:'#list',
+        data:{
+            arr:arr
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #app div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input v-on:click="isShow=!isShow" type="button" value="显示隐藏按钮"/>
+    <input v-on:click="showHandle" type="button" value="显示隐藏按钮"/>
+    <div v-show="isShow">被操作的元素</div>
+    <!--要记得把状态数据给要被操作的元素-->
+</div>
+<script src="vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            isShow: true
+        },
+        methods:{
+            showHandle:function () {
+                this.isShow = !this.isShow
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

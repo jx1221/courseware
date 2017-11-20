@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul class="list">
+<li :title="tip+i+'个'" v-for="e,i in list">下标{{i}}，值{{e}}</li>
+    <!--模板字符串也是可以的，但是最好不要这么写-->
+<!--<li>123</li>-->
+</ul>
+<script src="vue.js"></script>
+<script>
+    //标签上添加title属性，就会成为鼠标悬停提示
+    let arr = ['hello','四五六','你好'];
+    let vm = new Vue({
+        el: '.list',
+        data:{
+            massage:'miaov',
+            list: arr,
+            tip: '我是鼠标悬停'
+
+        }
+    });
+    console.log(vm);
+    document.onclick = function () {
+
+        vm.massage = 'abc'
+    }
+</script>
+</body>
+</html>
