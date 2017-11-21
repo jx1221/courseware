@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+    //数组的方法
+
+//    首先确定是谁的方法，这个方法是属于哪一类数据的
+//    方法的作用是什么？
+//    接不接收参数，方法接收的参数，参数的类型，参数的个数，必填和选填的
+//    返回值的类型是什么，值是什么
+//    调用这个方法之后，对不对原数据产生影响
+
+//    let arr =['miaov','keang','leo']; 书架
+
+    //1.向数组中追加一个到多个值 push(一个到多个值) 会改变原数组 返回值：新数组的长度
+    //2.向数组的前面添加一个到多个值 unshift(一个到多个值) 改变原数组 返回值：新数组的长度
+//    3.删除第一个 shift() 改变原数组 返回值：删除的值
+//    4.删除最后一个 pop() 改变原数组 返回值：删除的值
+//    5.截取数组，给定开始位置和结束位置 slice(start,[end]) 不改变原数组 返回值：返回新数组
+    6.翻转数组
+    7.遍历数组
+    8.合并数组
+    9.
+
+
+//    删除指定位置的值 splice(start下标,length删除的个数) 第二个参数不写，一直删除到最后 返回值是新数组
+//    替换指定位置的值 splice(start下标,length删除的个数,替换的值）想在某一位置插入，第二个个数写0
+
+    函数式编程
+
+    遍历 枚举 循环数组在干什么
+    拿到数组的每一个值，以及值对应的下标
+    forEach,用来枚举数组
+
+    函数是用来存代码块的
+
+    arr.forEach(function (e,i) { //只要牵扯到循环的，都传函数
+
+    })
+
+    let arr = ['a','b','c'];
+    //做遍历用的
+    arr.map(function (e,i) {
+        map的返回值，是映射型的，原数组有几项，就返回有几项的新数组，map返回的新数组中的值，是
+        回调函数执行后的返回值，在原有的数组的数据基础上做处理，然后return出来
+
+        return `<li>${e}</li>`
+
+    })
+
+
+    //过滤某个数组的，要根据某个条件过滤
+    arr.filter(function (e,i) {
+//        返回的是满足条件的数组，
+//        如果直接写return true 返回的是与原数组相同的新数组？？？
+    })
+
+//    *****出现undefined的情况
+
+//    1.对象没有指定的属性
+//    2.定义变量未赋值
+//    3.函数没有返回值
+
+
+    //reduce()
+    三个参数
+
+</script>
+</body>
+</html>
