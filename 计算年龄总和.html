@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let arr = [{
+        name: 30,
+        age: 32,
+        weight: 100
+    },{
+        name: 20,
+        age: 27,
+        weight: 166
+    },{
+        name: 35,
+        age: 25,
+        weight: 88
+    }];
+
+//    let newArr1 = arr.map(function (e,i) {
+//        return e.name;
+//    })
+//
+//    let newArr2 = arr.map(function (e,i) {
+//        return e.weight;
+//    })
+//    console.log(newArr1);
+//    console.log(newArr2);
+
+    let weights = 0;
+    let ages = 0;
+
+//    arr.forEach(function (e,i) {
+//        age = e.age + age;
+//        weight = e.weight + weight;
+//    })
+//    console.log(age)
+//    console.log(weight)
+
+ let total = arr.reduce(function (e1,e2) {
+     console.log(e1.weight);
+     console.log(e2.weight);
+     return {
+         age: e1.age + e2.age,
+         weight: e1.weight + e2.weight
+
+     }
+//         weights:e1 + e2.weight
+
+ },{age:100,weight:100});
+    console.log(total)
+
+
+</script>
+</body>
+</html>

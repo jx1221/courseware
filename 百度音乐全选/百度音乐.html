@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.list-body li:nth-child(even) {
+				background: yellow;
+			}
+			.list-body li:nth-child(odd) {
+				background: #fff;
+			}
+			.list-body li:hover {
+				background: green;
+			}
+			.list-body li.checkedColor {
+				background: green;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="css/baidu.css" />
+		<script src="../vue.js"></script>
+	</head>
+
+	<body>
+		<div class="wrap" id="app">
+			<div class="baidu">
+				<ul class="list list-head">
+					<li>
+						<div>
+							<input type="checkbox" v-model="checkedAll" />全选
+						</div>
+						<span>歌单</span>
+						<span>歌手</span>
+						<span>专辑</span>
+					</li>
+				</ul>
+				<ul class="list list-body">
+					<li :class="{checkedColor: item.checked}" v-for="item in info">
+						<div><input type="checkbox" v-model="item.checked"></div>
+						<span>{{item.song}}</span>
+						<span>{{item.name}}</span>
+						<span>{{item.album}}</span>
+					</li>
+
+				</ul>
+				<div class="select">
+					<span class="selectAll">
+
+						<span>统计：</span>
+					</span>
+					<div class="others">
+						<span><em></em>歌手有：{{info.length}}位</span>
+						<span><em></em>专辑有{{albumTotal}}张</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../vue.js"></script>
+		<script>
+			let data = [
+				{
+					id:Date.now()+Math.random(),
+					name: '邓紫棋',
+					song: '泡沫',
+					checked: false,
+					album: 10
+				},
+				{
+					id:Date.now()+Math.random(),
+					name: '王杰',
+					song: '泡沫',
+					checked: false,
+					album: 10
+				},
+				{
+					id:Date.now()+Math.random(),
+					name: '邓紫棋',
+					song: '泡沫',
+					checked: false,
+					album: 10
+				}
+			]
+
+			let vm = new Vue({
+				el:'#app',
+				data:{
+				    info:data
+
+				},
+				computed:{
+				    singerTotal:function () {
+						this.info.reduce(function (item1,item2) {
+							return item1+item2.name
+                        },0)
+                    },
+					albumTotal:function () {
+						let aT = this.info.reduce(
+						    function (item1,item2) {
+                                return item1+item2.album
+                            },0
+						);
+						return aT;
+                    },
+					checkedAll:{
+				        get:function () {
+                            let newArr = this.info.filter(function (item) {
+								 return item.checked;
+                            });
+							return newArr.length === this.info.length;
+                        },
+						set:function (newValue) {//监听checkedAll的input人为改变的时候
+                            this.info.forEach(function (item){
+                                item.checked = newValue;
+                            })
+                        }
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>
