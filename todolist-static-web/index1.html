@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <section class="todoapp">
+        <div>
+            <header class="header" >
+                <h1>todos</h1>
+                <input
+                        class="new-todo"
+                        placeholder="请输入内容"
+                        v-model="message"
+                        @keyup.13 = "addTodo"
+
+                />
+            </header>
+            <section v-show="list.length" class="main">
+                <input class="toggle-all" type="checkbox" v-model="isAllChecked"/>
+                <ul class="todo-list">
+                    <li
+                            :class="{completed:item.checked,editing:editId===item.id}"
+                            v-for="item,i in filterData"
+
+
+                    >   <!--completed editing-->
+                        <div class="view">
+                            <input class="toggle" type="checkbox" v-model="item.checked"/>
+                            <label @dblclick="edit(item)">{{item.content}}</label>
+                            <!--这个双击放在li上也是可以的，但是当放在li上的时候，范围太大，双击前面的小选框也会触发编辑事件-->
+                            <button class="destroy" @click="removeTodo(item.id)"></button>
+                        </div>
+                        <input
+                                class="edit"
+                                v-model="item.content"
+                                @blur = "editDone(item)"
+                                @keyup.13="editDone(item)"
+                                @keyup.esc = "editCancel(item)"
+
+                        />
+
+                    </li>
+
+                </ul>
+            </section>
+            <footer class="footer" v-show="list.length">
+	            <span class="todo-count">
+	            	<strong>{{unDone}}</strong>
+	            	<span>条未选中</span>
+	            </span>
+	            <ul class="filters">
+	            	<li><a href="#/all" :class="{selected:hash==='all'}">All</a></li>
+	            	<li><a href="#/active" :class="{selected:hash==='active'}">Active</a></li>
+	            	<li><a href="#/completed" :class="{selected:hash==='completed'}">Completed</a></li>
+	           	</ul>
+            </footer>
+        </div>
+    </section>
+</body>
+<script src="../vue.js"></script>
+<script>
+	/*
+		1. 增删改查数据，要使用localStorage做数据持久化
+		2. 根据hash不同，过滤渲染的数据
+			a. 全部任务
+			b. 完成的任务
+			c. 未完成的任务
+		3. 自己设计数据结构
+			
+	*/
+
+//数据持久化
+
+//    最开始的时候要从localstorage中取值，如果没有值就设为空数组
+
+    let data = JSON.parse(localStorage.getItem('todolist'))||[];
+//    let data = [];
+//    let data = [
+//        {
+//            id:Math.random(),
+//            content: 1111,
+//            checked: false
+//        },
+//        {
+//            id:Math.random(),
+//            content: 2222,
+//            checked: false
+//        },
+//        {
+//            id:Math.random(),
+//            content: 33333,
+//            checked: false
+//        }
+//    ];
+
+	let vm = new Vue({
+        el:'.todoapp',
+        data:{
+            list:data,
+            message:'',
+            editId:'',
+            beforeContent:'',  //取消修改的时候，要在双击的时候把原有的数据存一下，这个就起到存旧数据的作用
+            hash:'all'      //默认hash是all
+        },
+        watch:{
+            list:{//监视的是list这个数据，然后想要深度监视就要给出一个对象
+                deep: true,
+                handler:function () {
+                    localStorage.setItem('todolist',JSON.stringify(this.list))
+                }
+            }
+
+        },
+        methods:{
+            addTodo:function () {
+                this.list.push({
+                    id:Math.random(),
+                    content: this.message,
+                    checked: false
+                });
+                this.message = ''
+            },
+            removeTodo:function (id) {
+                this.list = this.list.filter(function (item) {//?这个item是list的每一项
+                    return item.id!==id //当原本list的id不等于现在这个id的保留下来，等于的删掉
+                });
+
+            },
+            edit:function (item) {
+                this.editId = item.id;
+                this.beforeContent = item.content;//是把右边的值赋给左边不要搞错顺序！！！
+
+
+            },
+            editDone:function (item) {
+                this.editId='';
+                //如果修改后的数据为空，则为删除这条数据
+                if(item.content.trim()===''){
+                    this.removeTodo(item.id)
+                }
+
+            },
+            editCancel:function (item) {
+                this.editId='';
+                item.content=this.beforeContent;
+                this.beforeContent='';
+            }
+        },
+        computed:{
+            isAllChecked:{
+                get:function () {
+                    let newArr = this.list.filter((item)=>{
+                            return item.checked
+                    });
+                    return newArr.length===this.list.length;
+                },
+                set:function (newValue) {
+                    this.list.forEach(item=>item.checked=newValue)//这个地方是赋值
+                }
+            },
+            unDone:function () {
+                return this.list.filter(item=>!item.checked).length
+            },
+            filterData:function () {
+
+                switch (this.hash){
+                    case'all':
+                        return this.list;
+                    break;
+                    case'active':
+                        return this.list.filter(item=>!item.checked);
+                    break;
+                    case'completed':
+                        return this.list.filter(item=>item.checked);
+                    break;
+                }
+            }
+        }
+    })
+    
+    window.onhashchange = function () {
+        let hash = window.location.hash.slice(2);//截取两位是因为一个是#号，另一个是/号，只把active 和 complete。。。
+        vm.hash = hash;//把拿到的hash值给到Vue的data里的hash
+        console.log(hash)
+	}
+</script>
+
+</html>

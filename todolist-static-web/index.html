@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <section class="todoapp">
+        <div>
+            <header class="header" >
+                <h1>todos</h1>
+                <input
+                        class="new-todo"
+                        placeholder="请输入内容"
+                        v-model="message"
+                        @keyup.13="addMessage"
+                />
+            </header>
+            <section class="main">
+                <input class="toggle-all" type="checkbox" v-model="allChecked" />
+                <ul class="todo-list">
+                    <li
+                            :class="{completed:item.checked,editing:i===edIndex}"
+                            v-for="item,i in list"
+                            @dblclick="ed(i)"
+                            @keyup.13="noed(i)"
+                    >   <!--completed editing-->
+                        <div class="view">
+                            <input class="toggle" type="checkbox" v-model="item.checked"/>
+                            <label>{{item.content}}</label>
+                            <button class="destroy" @click="removeMessage(i)"></button>
+                        </div>
+                        <input class="edit" v-model="item.content"/>
+                        <!--这个编辑的框为了留住之前的内容，要v-model="item.content-->
+                    </li>
+                    <!--<li class="">-->
+                        <!--<div class="view">-->
+                            <!--<input class="toggle" type="checkbox" />-->
+                            <!--<label>miaoweiketang</label>-->
+                            <!--<button class="destroy"></button>-->
+                        <!--</div>-->
+                        <!--<input class="edit" />-->
+                    <!--</li>-->
+                    <!--<li class="completed">-->
+                        <!--<div class="view">-->
+                            <!--<input class="toggle" type="checkbox" />-->
+                            <!--<label>miaoweiketang</label>-->
+                            <!--<button class="destroy"></button>-->
+                        <!--</div>-->
+                        <!--<input class="edit" />-->
+                    <!--</li>-->
+                </ul>
+            </section>
+            <footer class="footer">
+	            <span class="todo-count">
+	            	<strong>0</strong>
+	            	<span>条未选中</span>
+	            </span>
+	            <ul class="filters">
+	            	<li><a href="#/all" class="selected">All</a></li> 
+	            	<li><a href="#/active" class="">Active</a></li> 
+	            	<li><a href="#/completed" class="">Completed</a></li>
+	           	</ul>
+            </footer>
+        </div>
+    </section>
+</body>
+<script src="../vue.js"></script>
+<script>
+	/*
+		1. 增删改查数据，要使用localStorage做数据持久化
+		2. 根据hash不同，过滤渲染的数据
+			a. 全部任务
+			b. 完成的任务
+			c. 未完成的任务
+		3. 自己设计数据结构
+			
+	*/
+	let data = [
+        {
+            id:Math.random(),
+            content: 1111,
+            checked: false
+        },
+        {
+            id:Math.random(),
+            content: 2222,
+            checked: false
+        },
+        {
+            id:Math.random(),
+            content: 33333,
+            checked: false
+        }
+    ];
+
+	let vm = new Vue({
+        el:'.todoapp',
+        data:{
+            list:data,
+            message:'',
+            edIndex:-1
+
+        },
+        methods:{
+            addMessage:function () {
+                this.list.push({
+                    id:Math.random(),
+                    content:this.message,
+                    checked: false
+                });
+                this.message = ''
+            },
+            removeMessage:function (index) {
+                this.list.splice(index,1);
+            },
+            completedMessage:function (item) {
+                return item.checked
+            },
+            ed:function (index) {
+                this.edIndex = index;
+            },
+            noed:function (index) {
+                this.edIndex = -1;
+            }
+        },
+        computed:{
+            allChecked:{
+                get:function () {
+                    let newArr = this.list.filter(function (item) {
+                        return item.checked;
+                    });
+                    return newArr.length ===this.list.length
+                },
+                set:function (newValue) {
+                    this.list.forEach(function (item) {
+                        item.checked=newValue
+                    })
+                }
+                
+            }
+        }
+    })
+</script>
+
+</html>
