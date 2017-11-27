@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+	<div id="div"></div>
+	<button id="btn">发送请求</button>
+	<script type="text/javascript" src="../jquery-3.2.1.js"></script>
+  <script>
+  // 	$.ajax({
+		//   url: "http://192.168.2.75:3001/user",
+		//   type: 'get',
+		// success:function(data){
+		// 	console.log(data);
+		// 		$.ajax({
+		// 	  url: "http://192.168.2.75:3001/adress",
+		// 	  type: 'post',
+		// 	success:function(data){
+		// 		console.log(data)
+		// 		$.ajax({
+		//   url: "http://192.168.2.75:3001/shop",
+		//   type: 'get',
+		// success:function(data){
+		// 	console.log(data)
+		// }
+		// });
+		// 	}
+		// 	});
+		// }
+		// });
+
+  	function ajax1(){
+  		return new Promise(function(resolve,reject){
+  			$.ajax({
+  				url:'http://192.168.2.75:3001/user',
+  				type:'get',
+  				success:resolve,
+  				error:reject
+  			})
+  		})
+  	}
+  	function ajax2(){
+  		return new Promise(function(resolve,reject){
+  			$.ajax({
+  				url:'http://192.168.2.75:3001/adress',
+  				type:'post',
+  				success:resolve,
+  				error:reject
+  			})
+  		})
+  	}
+  	function ajax3(){
+  		return new Promise(function(resolve,reject){
+  			$.ajax({
+  				url:'http://192.168.2.75:3001/shop',
+  				type:'get',
+  				success:resolve,
+  				error:reject
+  			})
+  		})
+  	}
+  	ajax1()
+  	.then(function(data){
+  		console.log(data)
+  		return ajax2()
+  	})
+  	.then(function(data){
+  		console.log(data)
+  		return ajax3()
+  	})
+  	.then(function(data){
+  		console.log(data)
+  	})
+  	// .catch(function(err){//捕获错误
+  	// 	console.log(err)
+  	// })
+  </script>
+</body>
+</html>
