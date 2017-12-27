@@ -1,0 +1,280 @@
+body, h2{
+	margin: 0;
+}
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #555555;
+}
+img{
+	vertical-align: top;
+	border: none;
+}
+input{
+	padding: 0;
+	border: 1px solid #b5b5b5;
+}
+/*工具类*/
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clearfix{
+	*zoom: 1;
+}
+.clearfix{
+	content: "";
+	display: block;
+	clear: both;
+}
+/*main*/
+body{
+	font: 12px "宋体";
+	background-color: #f9f9f9;
+}
+.box{
+	width: 960px;
+	height: 713px;
+	/*background-color: pink;*/
+	margin: 0 auto;
+}
+.box .head{
+	height: 51px;
+	padding-top: 25px;
+	background-color: #f9f9f9;
+}
+.head .head_left{
+	width: 645px;
+	height: 26px;
+	background-color: #f9f9f9;
+/*	border-right: 1px solid #cccccc;*/
+}
+.head_left .logo{
+	width: 392px;
+	border-right: 1px solid #cccccc;
+}
+.logo a{
+	height: 26px;
+	text-indent: -9999px;
+}
+.logo .wangyi163{
+	width: 107px;
+	margin-right: 23px;
+	background: url(../img/wangyi163.jpg) no-repeat;
+}
+.logo .wangyi126{
+	width: 108px;
+	margin-right: 20px;
+	background: url(../img/wangyi126.jpg) no-repeat;
+}
+.logo .wangyiyear{
+	width: 115px;
+	background: url(../img/wangyiyear.jpg) no-repeat;
+}
+.head_left .subheading{
+	width: 240px;
+	font: 20px/22px "微软雅黑";
+	margin-left: 12px;
+	margin-bottom: 4px;
+	color: #666564;
+}
+
+.head .head_right{
+	width: 115px;
+	height: 26px;
+	background-color: ##f9f9f9;
+	/*margin-top: 2px;*/
+}
+.head_right a{
+	color: #003399;
+	font: 12px/12px "宋体";
+	margin-top: 8px;
+
+}
+.head_right .more{
+	width: 53px;
+	border-right: 1px solid #003399;
+	margin-right: 8px;
+}
+.box .content{
+	width: 960px;
+	height: 586px;
+	border-top: none;
+	background-color: #d90000;
+}
+.content .content_head{
+	width: 958px;
+	height: 36px;
+	color: #ffffff;
+	font: 14px/36px "宋体";
+	text-indent: 20px;
+	background: url(../img/headjianbianbeijing.jpg) repeat-x;
+	border: 1px solid #5b88b8;
+/*	margin-bottom: 50px;*/
+}
+.content .content_main{
+	width: 958px;
+	height: 547px;
+	/*padding-top: 50px;*/
+	border: 1px solid #cccccc;
+	border-top: none;
+}
+.content_main .main_left{
+	width: 642px;
+	height: 547px;
+	border-right: 1px solid #e0e0e0;
+	background-color: #ffffff;
+}
+.mail_type{
+	width: 336px;
+	height: 34px;
+	padding-left: 145px;
+	padding-top: 50px;
+	padding-bottom: 34px;
+}
+.mail_type .abc{
+	width: 166px;
+	height: 32px;
+	line-height: 32px;
+	font-weight: bold;
+	color: #ffffff;
+	text-align: center;
+	border: 1px solid #004a94;
+	background: url(../img/mailbeijing.jpg) repeat-x;
+	font-size: 14px;
+}
+.mail_type .phonenumber{
+	width: 166px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	border: 1px solid #b5b5b5;
+	font-size: 14px;
+	background: url(../img/phonebeijing.jpg) repeat-x;
+}
+.list .item{
+	height: 61px;
+	width: 481px;
+	margin-bottom: 12px;
+}
+.item .text{
+	width: 134px;
+	font-size: 14px;
+	line-height: 26px;
+	margin-right: 11px;
+	text-align: right;
+}
+.text span{
+	color: #d00000;
+	margin-right: 8px;
+}
+.info input{
+	width: 210px;
+	height: 25px;
+}
+.info .password, .info .con_password{
+	width: 332px;
+}
+.info .id_code{
+	width: 206px;
+}
+.info select{
+	height: 27px;
+	width: 100px;
+	border: 1px solid #b5b5b5;
+	color: #999999;
+}
+.info span{
+	color: #999999;
+	font-family: arial;
+	margin-right: -2px;
+}
+.info .rules{
+	line-height: 34px;
+	color: #999999;
+}
+.info .yanzhengwenzi{
+	width: 212px;
+	line-height: 56px;
+}
+.list .queren{
+	margin-bottom: 10px;
+}
+.list .last{
+	height: 95px;
+	margin-bottom: 0;
+}
+.item .info{
+	width: 336px;
+}
+.info .ps_pic{
+	width: 124px;
+	margin-top: 0;
+}
+.info .left{
+	width: 212px;
+	margin-top: 12px;
+}
+.ps_pic a span{
+	display: block;
+	color: #003399;
+	line-height: 12px;
+	margin-top: 9px;
+	margin-left: 9px;
+}
+.item .yanzhengma{
+	margin-top: 14px;
+}
+.form .law{
+	width: 336px;
+	height: 19px;
+	margin-left: 149px;
+	line-height: 19px;
+	color: #999999;
+}
+.law a{
+	line-height: 12px;
+	color: #003399;
+}
+.submit input{
+	width: 117px;
+	height: 35px;
+	background-color: #56ae41;
+	border-color: #35971e;
+	margin-left: 145px;
+	margin-top: 16px;
+	color: #ffffff;
+	font: bold 16px "宋体";
+}
+.foot{
+	background-color: #f9f9f9;
+	height: 51px;
+}
+.foot_left a{
+	color: #999999;
+	line-height: 12px;
+}
+.foot .foot_z{
+	padding-top: 15px;
+	margin-left: 211px;
+}
+.foot_right{
+	height: 12px;
+	color: #999999;
+	width: 110px;
+	border-left: 1px solid #999999;
+	margin-left: 10px;
+}
+.foot_right span{
+
+	padding-left: 10px;
+}
+.foot_z img{
+	margin-top: 2px;
+}
