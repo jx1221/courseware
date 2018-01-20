@@ -1,0 +1,95 @@
+window.onload = function(){
+// 要做的事情
+// 1.获取时间戳
+// 2.倒计时
+// 3.倒计时结束后弹出弹出层
+// 4.商品下架变小
+// 5.下面弹出商品列表
+	//获取元素
+	
+	
+	var confirm = document.querySelector('a');
+	var lis=document.querySelectorAll('ul li');
+	// 1.获取时间戳
+	endTime();
+	function endTime(){
+		var setTime = document.querySelector('.settime');
+		//点击确定的时候获取时间戳
+		confirm.onclick = function(){
+			var val = setTime.value;
+			//用户填入的数字格式必须是我们所需要的格式? 如果为空，则返回
+			if (val=='') {
+				alert('请输入时间');
+				return;
+			}
+
+			
+			// 把2017-08-29 17:30:00这个形式的时间转换成上面的形式
+			
+			var endTimeArr1 = setTime.value.split(' ');
+			var endTimeArr2 = endTimeArr1[0].split('-');
+			var endTimeArr3 = endTimeArr1[1].split(':');
+			var endTimeArr4 = endTimeArr2.concat(endTimeArr3);
+			// console.log(endTimeArr4);
+			//获取时间戳
+			var endTime = new Date(endTimeArr4[0],endTimeArr4[1]-1,endTimeArr4[2],endTimeArr4[3],endTimeArr4[4],endTimeArr4[5]).getTime();
+			alert(endTime);
+			
+			// console.log(endTime);????
+		};
+		
+		
+	}
+// 先写一个倒计时函数，此处的倒计时是根据设定的值，所以获取的不是当前的时间，
+	// 而是当前设定的时间
+	countDown();
+	function countDown(){
+		lis[0].timer = null;
+		var strongs = document.querySelectorAll('.time strong');
+		var endTime = 1503999000000;
+		lis[0].timer =setInterval(function(){
+			var currTime = new Date().getTime();
+			var deadLine = endTime - currTime;
+			var day = parseInt(deadLine/(24*60*60*1000));
+			
+			var hour = parseInt(deadLine%(24*60*60*1000)/(60*60*1000));
+			var min = parseInt(deadLine%(60*60*1000)/(60*1000));
+			var sec = parseInt(deadLine%(60*1000)/1000);
+			// console.log(sec);
+
+			if (day<10) {
+				day ='0'+day;
+			}
+			if (hour<10) {
+				hour ='0'+hour;
+			}
+			if (min<10) {
+				min ='0'+min;
+			}
+			if (sec<10) {
+				sec ='0'+sec;
+			}
+			// console.log(day,hour,min,sec);
+			var dayArr = day.toString().split('');
+			var hourArr = hour.toString().split('');
+			var minArr = min.toString().split('');
+			var secArr = sec.toString().split('');
+
+			// console.log(secArr);
+			strongs[0].innerHTML = dayArr[0];
+			strongs[1].innerHTML = dayArr[1];
+			strongs[2].innerHTML = hourArr[0];
+			strongs[3].innerHTML = hourArr[1];
+			strongs[4].innerHTML = minArr[0];
+			strongs[5].innerHTML = minArr[1];
+			strongs[6].innerHTML = secArr[0];
+			strongs[7].innerHTML = secArr[1];
+
+		},1000)	
+	}
+
+	//3.倒计时结束后弹出弹出层
+	function mask(){
+		
+	}
+};

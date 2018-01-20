@@ -1,0 +1,157 @@
+body{
+	padding: 0;
+}
+ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+img{
+	vertical-align: top;
+	border: none;
+}
+a{
+	text-decoration: none;
+	color: #de4a63;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: none;
+}
+section{
+	margin: 0 200px;
+}
+.time strong{
+	float: left;
+	padding: 0;
+	margin-left: 2px;
+	width: 19px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	background-color: #de4a63;
+	color: #fff;
+	font-size: 20px;
+
+}
+.time span{
+	float: left;
+	margin-left: 1px;
+	margin-right: 1px;
+}
+.top header{
+	width: 240px;
+	height: 40px;
+	background-color: #171717;
+}
+.content{
+	width: 240px;
+	height: 400px;
+
+}
+.top ul{
+	overflow: hidden;
+}
+.top li{
+	float: left;
+	margin-right: 10px;
+	background-color: pink;
+	position: relative;
+}
+.deadline{
+	height: 88px;
+	padding: 30px 0px;
+	background-color: #eee;
+	box-sizing: border-box;
+}
+.pic{
+	text-align: center;
+	height: 160px;
+}
+.pic img{
+
+	width: 188px;
+}
+.info{
+	text-align: center;
+}
+.weather_type{
+	color: #000;
+	line-height: 32px;
+}
+.price{
+	color: #c7485c;
+	line-height: 32px;
+}
+.bottom{
+	width: 990px;
+	margin-top: 8px;
+}
+.bottom header{
+	height: 36px;
+	background-color: #191919;
+}
+.bottom li{
+	height: 68px;
+	background-color: #eee;
+
+}
+.top a{
+	line-height: 40px;
+	color: #de4a63;
+	
+}
+.settime{
+	line-height: 40px;
+	color: #de4a63;
+	margin-left: 20px;
+	border: none;
+	outline: none;
+	height: 30px;
+	background-color: #191919;
+	width: 168px;
+	margin-top: 5px;
+}
+
+//mask
+.mask{
+	height: 440px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+}
+.opa{
+	width: 240px;
+	height: 440px;
+	background-color: #000;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.seal{
+	width: 140px;
+	height: 140px;
+	border: 10px solid #eee;
+	border-radius: 80px;
+	// background-color: red;
+	color: #eee;
+	font-size: 28px;
+	text-align: center;
+	line-height: 160px;
+	transform: scale(2) rotateZ(-30deg);
+	transition: 2s;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -70px;
+	margin-top: -70px;
+
+}

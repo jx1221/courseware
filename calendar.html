@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box{
+            width:280px;
+            overflow: hidden;
+            margin: auto;
+            padding:10px;
+            border:1px solid #000;
+        }
+        ul{
+            padding: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        li{
+            float: left;
+            width:40px;
+            height:40px;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .red{
+            color:red;
+        }
+
+        .year{
+            overflow: hidden;
+        }
+        a{
+            display: block;
+            height:50px;
+            line-height: 50px;
+            width:50px;
+            text-align: center;
+            text-decoration: none;
+            color:#000;
+            border:1px solid #000;
+        }
+        a:first-of-type{
+            float: left;
+        }
+        a:last-of-type{
+            float: right;
+        }
+        h2{
+            margin: 0;
+            height:50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .gray{
+            color:gray;
+        }
+        .border{
+            border:1px solid blue;
+            width:38px;
+            height:38px;
+        }
+	</style>
+</head>
+<body>
+<div id="box">
+    <div class="year">
+        <a href="javascript:;" class="prev">&lt;</a>
+        <a href="javascript:;" class="next">&gt;</a>
+        <h2></h2>
+
+    </div>
+    <ul class="week">
+        <li class="red">日</li>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li class="red">六</li>
+    </ul>
+    <ul class="day"></ul>
+</div>
+	<script type="text/javascript">
+		//获取元素
+		var days = document.querySelector('.day');
+		var h2 = document.querySelector('h2');
+		var prev = document.querySelector('.prev');
+		var next = document.querySelector('.next');
+		var lis = days.querySelectorAll('li');
+		var date = new Date();
+		weekDayOk();
+		date = new Date();
+		meiyitian();
+		//让每一天对应正确的星期几，即把每个月1号的星期几设置正确，剩下的自然正确
+		function weekDayOk(){
+			
+			date.setDate(1);//把日期设置成一号
+			date.getDay();
+			// console.log(date.getDay());
+			var weekDay = date.getDay();
+			for (var i = 0; i < weekDay; i++) {
+				days.innerHTML += '<li></li>';
+			}//!!!这个的顺序必须在显示每一天之前，需要按顺序添加li
+		}
+		
+
+
+		//显示当前月份的每一天
+		function meiyitian(){
+			
+			date.getMonth();
+			date.setMonth(date.getMonth()+1);
+			date.setDate(0);
+			var dateNumber = date.getDate();
+			for (var i = 0; i < dateNumber; i++) {
+				days.innerHTML += '<li>'+(i+1)+'</li>';
+			}
+		}
+		
+		//让对应星期天和星期六的数字变红
+		// if (dateNumber%7==0||dateNumber%7==6) {
+		// 	var lis = days.querySelectorAll('li');
+		// 	for (var i = 0; i < lis.length; i++) {
+		// 		lis[i].className ='red';
+		// 	}
+			
+		// }
+		//此处的是正确顺序是先做元素获取，然后进行for循环，在for循环的时候进行判断
+		var lis = days.querySelectorAll('li');
+		for (var i = 0; i < lis.length; i++) {
+			if (i%7==0||i%7==6) {
+				lis[i].className ='red';
+			}
+				
+		 }
+		
+		//设置h2的内容，即文字显示现在的月份
+
+		date = new Date();
+		date.getMonth();
+		var monthnum = date.getMonth();
+		//设置要显示的月份
+		date.setMonth(monthnum);
+		var month = date.getMonth()+1;
+		var year = date.getFullYear();
+		// console.log(month);
+		h2.innerHTML = year+'年'+(monthnum+1)+'月';
+
+		//添加上个月,下个月的点击事件
+		var num = 0;
+		next.onclick = function(){
+			
+			// var lis = days.querySelectorAll('li');
+			// console.log(lis);
+			num++;
+			date = new Date();
+			date.setMonth(date.getMonth()+num);
+			// console.log(date.getMonth());
+			// date.setFullYear(date.getMonth()+num)
+			// if ((month+num)>12) {
+			// 	year = year+1;
+			// 	num =0;
+			// }
+			
+			h2.innerHTML = date.getFullYear()+'年'+(date.getMonth()+1)+'月';
+			var lis = days.querySelectorAll('li');
+			for (var i = 0; i < lis.length; i++) {
+				days.innerHTML = '';			
+			}
+			// var date = new Date();
+			date.setDate(1);//把日期设置成一号
+			date.getDay();
+			console.log(date.getDay());
+			var weekDay = date.getDay();
+			for (var i = 0; i < weekDay; i++) {
+				days.innerHTML += '<li></li>';
+			}
+
+
+			
+				date = new Date();
+				// date.getMonth();
+				date.setMonth(date.getMonth()+1+num);
+				// console.log(date.getMonth());
+				date.setDate(0);
+				var dateNumber = date.getDate();
+				for (var i = 0; i < dateNumber; i++) {
+					days.innerHTML += '<li>'+(i+1)+'</li>';
+				}
+
+				var lis = days.querySelectorAll('li');
+
+			for (var i = 0; i < lis.length; i++) {
+
+				if (i%7==0||i%7==6) {
+					lis[i].className ='red';
+					// alert(1);
+				}
+					
+			 }
+
+		};
+		prev.onclick = function(){
+			var lis = days.querySelectorAll('li');
+			num--;
+			date = new Date();
+			date.setMonth(date.getMonth()+num);
+
+			h2.innerHTML = date.getFullYear()+'年'+(date.getMonth()+1)+'月';
+			for (var i = 0; i < lis.length; i++) {
+				days.innerHTML = '';			
+			}
+			weekDayOk();
+			meiyitian();
+			var lis = days.querySelectorAll('li');
+			for (var i = 0; i < lis.length; i++) {
+
+				if (i%7==0||i%7==6) {
+					lis[i].className ='red';
+					// alert(1);
+				}
+					
+			 }
+
+		};
+	</script>
+</body>
+</html>
